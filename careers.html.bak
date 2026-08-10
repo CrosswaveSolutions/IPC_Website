@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Indiana Powder Coatings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <a class="navbar-brand" href="#">
+            <img src="img/brand.png" width="179" height="100" style="margin-top: -25px; margin-left: -36px;" alt="">
+        </a>
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="#jobs">Job Openings</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row text-center">
+                <!--<h1>Indiana <span>Powder</span> Coatings</h1>-->
+                <img src="img/powdercoatings.png" width=100% height=auto alt="">
+                <!--<img src="img/powdercoatings.png" width="800" height="500" alt="">-->
+                <h3>manufacturer of <span>custom formulated powder</span> coatings</h3>
+                <!--<a href="#" class="btn btn-primary btn-lg">Get a free quote</a>-->
+            </div>
+
+        </div>
+    </div><!-- end jumbotron -->
+
+    <div class="creative-process" id="jobs">
+        <div class="heading">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <h1>Job Openings</h1>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end heading -->
+
+        <div>
+            <p>
+                <br />
+                <br />
+            </p>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div id="carousel-creative-process" class="carousel slide">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-creative-process" data-slide-to="0" class="active">About our Company</li>
+                        <li data-target="#carousel-creative-process" data-slide-to="1">Production Associate</li>
+                        <li data-target="#carousel-creative-process" data-slide-to="2">Quality/R&D Techician</li>
+                        <li data-target="#carousel-creative-process" data-slide-to="3">Shipping/Receiving/Warehouse Associate</li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active text-center">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>About our Company</h4>
+                                    <p>
+                                        Indiana Powder Coatings, Inc. (IPC) is a privately owned company. We are proud of our family-oriented culture where everyone's contributions and ideas are welcomed and appreciated. In addition, we offer a competitive salary and comprehensive benefits package.
+                                        We are looking for team members that want a career, not just a job, and have a desire to learn powder coatings technology. If you like working as part of a team, have a stable work history, are dependable and willing to learn, we would encourage you to apply for a position with us.
+                                        The following positions described are the areas where we typically have staffing needs. Our needs vary with our customer requirements, so we may not have immediate openings in all areas. However, we do keep applications on file for 90 days, so we encourage you to apply if you meet the requirements described above and in the specific job posting described below.
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- end item -->
+
+                        <div class="item text-center">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h4>PRODUCTION ASSOCIATE</h4>
+                                    <p>The Production Associate will perform a variety of duties related to the manufacturing of powder coatings. These will include but are not limited to being proficient in the process of weighing up raw materials, combining the materials in a mixer, processing materials through an extruder, and packaging and labeling the finished product for shipment to the customer.</p>
+                                    <p></p>
+                                    <p>The ability to continually stand/walk, lift up to 55 pounds, work overtime as necessary, and adhere to all safety requirements, are required for this position.</p>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button class="btn-default" type="button" onclick="location.href = 'EmploymentForm.aspx';">Apply</button>
+                                </div>
+                            </div><!-- end production associate -->
+                        </div>
+                        <div class="item text-center">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h4>QUALITY TECHNICIAN/R&D TECHNICIAN</h4>
+                                    <p>The Quality Technician/R&D Technician will perform a variety of duties related to the testing or development of powder coating to ensure the product adheres to customers' specifications. These include being proficient in spraying test panels and evaluation of test panels using a variety of testing equipment and processes.</p>
+                                    <p></p>
+                                    <p>The ability to continually stand/walk, lift up to 25 pounds, work overtime as necessary and adhere to all safety requirements are required for this position. A working knowledge of Microsoft Windows/Office is strongly preferred.</p>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button class="btn-default" type="button" onclick="location.href = 'EmploymentForm.aspx';">Apply</button>
+                                </div>
+                            </div>
+                        </div><!-- end QUALITY TECHNICIAN/R&D TECHNICIAN -->
+
+                        <div class="item text-center">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h4>SHIPPING/RECEIVING/WAREHOUSE ASSOCIATE</h4>
+                                    <p>The Shipping/Receiving/Warehouse Associate will perform a variety of duties related to the receipt and verification of incoming raw materials, organization and inventory of raw materials and finished goods, and shipment of finished goods to the customer.</p>
+                                    <p></p>
+                                    <p>The ability to continually stand/walk, lift up to 55 pounds, work overtime as necessary, operate material handling equipment, and adhere to all safety requirements are required for this position. In addition, we require a minimum of one years' experience in a related position. A working knowledge of Microsoft Windows/Office is strongly preferred.</p>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button class="btn-default" type="button" onclick="location.href = 'EmploymentForm.aspx';">Apply</button>
+                                </div>
+                            </div>
+                        </div><!-- end SHIPPING/RECEIVING/WAREHOUSE ASSOCIATE -->
+                    </div>
+                </div><!-- end carousel -->
+            </div>
+        </div>
+    </div> <!-- end creative-process div jobs-->
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
