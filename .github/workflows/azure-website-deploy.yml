@@ -10,47 +10,20 @@ permissions:
   contents: read
 
 env:
-  AZURE_WEBAPP_NAME: ipcwebsite
-  SOLUTION_FILE: "Powder Coatings.sln"       # or the .csproj path
+  AZURE_WEBAPP_NAME: ipcwebsite   # exact App Service name in Azure
 
 jobs:
-  build:
+  deploy:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
-
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v2
-
-      - name: Restore packages
-        run: nuget restore "${{ env.SOLUTION_FILE }}"
-
-      - name: Build and package
-        run: >
-          msbuild "${{ env.SOLUTION_FILE }}"
-          /p:Configuration=Release
-          /p:DeployOnBuild=true
-          /p:WebPublishMethod=Package
-          /p:PackageAsSingleFile=true
-          /p:PackageLocation="${{ github.workspace }}\publish"
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app
-          path: publish\*.zip
-
-  deploy:
-    runs-on: windows-latest
-    needs: build
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: app
-          path: publish
+      - name: Stage site files
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path site | Out-Null
+          robocopy . site /E /XD .git .github site PrecompiledWeb /XF *.sln
+          if ($LASTEXITCODE -ge 8) { exit 1 } else { exit 0 }
 
       - name: Azure login (OIDC)
         uses: azure/login@v2
@@ -66,4 +39,6 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: publish\*.zip
+          package: site
+
+
