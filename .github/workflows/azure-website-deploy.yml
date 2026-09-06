@@ -11,7 +11,7 @@ permissions:
 
 env:
   AZURE_WEBAPP_NAME: ipcwebsite
-  SOLUTION_FILE: "Power Coatins.sln"       # or the .csproj path
+  SOLUTION_FILE: "Power Coatings.sln"       # or the .csproj path
 
 jobs:
   build:
