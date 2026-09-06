@@ -32,7 +32,7 @@ jobs:
           ##client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_BC5FB212EAC14DF1AC14A3DFE1E5D154 }}
           #client-id: ${{ secrets.IPC_APPREG_CLIENT_ID_NOT_OBJECT }}
           #client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenent-id: 034a60fc-4532-4daf-925e-303e9dec2aa2
+          tenant-id: 034a60fc-4532-4daf-925e-303e9dec2aa2
           ##tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_594F24BFE7174CC6AF60E6C9D05C6F08 }}
           #tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: 70140add-13e0-40d0-9f75-267b993e15c1
