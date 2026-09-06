@@ -1,47 +1,66 @@
-name: Deploy Web Site to Azure App Service
+name: Deploy to Azure Web App
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 env:
-  AZURE_WEBAPP_NAME: ipcwebsite   # must match the app name in Azure
-  SITE_PATH: '.'                        # folder containing Default.aspx and Web.config
+  AZURE_WEBAPP_NAME: ipcwebsite
+  SOLUTION_FILE: Power Coatins.sln       # or the .csproj path
 
 jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore packages
+        run: nuget restore ${{ env.SOLUTION_FILE }}
+
+      - name: Build and package
+        run: >
+          msbuild ${{ env.SOLUTION_FILE }}
+          /p:Configuration=Release
+          /p:DeployOnBuild=true
+          /p:WebPublishMethod=Package
+          /p:PackageAsSingleFile=true
+          /p:PackageLocation="${{ github.workspace }}\publish"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: publish\*.zip
+
   deploy:
     runs-on: windows-latest
-
+    needs: build
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: app
+          path: publish
+
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ env.SITE_PATH }}
-
-# ---------------------------------------------------------------------------
-# SITE_PATH examples:
-#   '.'              site files sit at the repo root
-#   'CrosswaveWeb'   site files sit in a subfolder
-#   'src/website'    nested
-#
-# The folder you point at must be the one containing Default.aspx and
-# Web.config -- not the folder above it.
-# ---------------------------------------------------------------------------
-
-# ---------------------------------------------------------------------------
-# OPTIONAL: precompile before deploying.
-# Catches syntax errors in CI instead of at runtime on the first page hit,
-# and slightly improves cold-start time. Add this step before the deploy step
-# and change the deploy package to 'compiled'.
-#
-#      - name: Precompile site
-#        run: >
-#          "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_compiler.exe"
-#          -v / -p "${{ env.SITE_PATH }}" -f "${{ github.workspace }}\compiled"
-# ---------------------------------------------------------------------------
+          package: publish\*.zip
